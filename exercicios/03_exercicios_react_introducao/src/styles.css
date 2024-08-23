@@ -1,0 +1,19 @@
+.profissional{
+    display: flex;
+    flex-direction: column;
+    background-color:#E0E0E0;
+    border-radius: 8px;
+    border:1px solid #E0E0E0;
+    padding: 4px 2px 4px 2px;
+}
+.profissional img{
+    width: 200px;
+    border-radius: 5%;
+    padding: 5px 5px 5px 5px;
+}
+.box-profissionais{
+    display: flex;
+    justify-content:space-between;
+    gap: 80px;
+    padding: 10px 10px 10px 10px;
+}
