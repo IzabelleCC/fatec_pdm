@@ -2,9 +2,10 @@ import React from 'react'
 import ReactDOM from  'react-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
-import Pedido from './Pedido'
-import Cartao from './Cartao'
-import Feedback from './Feedback'
+import Pedido from './componentes/Pedido'
+import Cartao from './componentes/Cartao'
+import Feedback from './componentes/Feedback'
+
 const App = () => {
   const textoOK = 'Já chegou'
   const textoNOK = 'Ainda não chegou'
@@ -23,7 +24,7 @@ const App = () => {
         <div className='col-sm-12 col-lg-6 col-xl-4 border py-5'>
           <Cartao cabecalho="22/04/2024">
             <Pedido 
-              icone="fa-solid fa-hard-drive fa-shake fa-3x"
+              icone="fa-solid fa-hard-drive fa-3x"
               titulo="SSD"
               descricao="SSD Kingston"
             />
@@ -33,7 +34,7 @@ const App = () => {
         <div className='col-sm-12 col-lg-6 col-xl-4 border  py-5'>
           <Cartao cabecalho="24/05/2024">
             <Pedido 
-              icone="fa-solid fa-computer-mouse fa-beat fa-3x"
+              icone="fa-solid fa-computer-mouse fa-3x"
               titulo="Mouse"
               descricao="Microsoft Mouse 3500"
             />
@@ -43,7 +44,7 @@ const App = () => {
         <div className='col-sm-12 col-lg-12 col-xl-4 border  py-5'>
           <Cartao cabecalho="25/05/2024">
             <Pedido 
-              icone="fa-solid fa-memory fa-fade fa-3x"
+              icone="fa-solid fa-memory fa-3x"
               titulo="Memória RAM"
               descricao="Memoria RAM de 16Gb"
             />
