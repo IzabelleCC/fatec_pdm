@@ -1,21 +1,42 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
-
+import EstacaoClimatica from './componentes/EstacaoClimatica'
+import Loading from './componentes/Loading'
 
 class App extends React.Component{
 
-    constructor(props){
-        super(props)
-        this.state = {
-            latitude: null,
-            longitude: null,
-            estacao: null,
-            data: null,
-            icone: null,
-            mensagemDeErro: null
-        }
+    // constructor(props){
+    //     super(props)
+    //     console.log('Construtor')
+    //     this.state = {
+    //         latitude: null,
+    //         longitude: null,
+    //         estacao: null,
+    //         data: null,
+    //         icone: null,
+    //         mensagemDeErro: null
+    //     }
+    // }
+    state = {
+        latitude: null,
+        longitude: null,
+        estacao: null,
+        data: null,
+        icone: null,
+        mensagemDeErro: null
+    }
+
+    componentDidMount(){
+        console.log('Componente montado')
+      //  this.obterLocalizacao()
+    }
+    componentDidUpdate(){
+        console.log('Componente atualizado')
+    }
+    componentWillUnmount(){
+        console.log('Componente desmontado')
     }
 
     obterEstacao = (data, latitude) => {
@@ -68,37 +89,33 @@ class App extends React.Component{
     }
 
     render(){
+        console.log('Render')
         return (
             <div className='container p-4 border mt-2'>
                 <div className='row justify-content-center'>
                     <div className="col-sm-12 col-md-8">
-                            <div className='card'>
-                                <div className='card-body'>
-                                    <div
-                                        className='d-flex justify-content-center aling-items-center'
-                                        style={{height: '6rem'}}>
-                                            <i className={`fa-5x ${this.state.icone}`}></i>
-                                            <p className='w-75 ms-3 text-center fs-1'>{this.state.estacao}</p>
-                                    </div>
-                                    <p className='text-center'>
-                                        {
-                                            this.state.latitude ?
-                                                `Coordenadas: ${this.state.latitude}, ${this.state.longitude}. Data: ${this.state.data}`
-                                                :
-                                                this.state.mensagemDeErro ?
-                                                    this.state.mensagemDeErro
-                                                    :
-                                                    'Clique no botão para saber a sua estação climática'
-                                        }
-                                    </p>
-                                    <button
-                                        onClick={this.obterLocalizacao}
-                                        className='btn btn-outline-primary w-100 mt-2'>
-                                            Qual a minha localização?
-                                    </button>
-                                </div>
-                            </div>
-                    </div>
+                        {
+                            (!this.state.latitude && !this.state.mensagemDeErro) ?
+                                <Loading 
+                                    mensagem = "Por favor, responda à solicitação localizaçao"
+                                />
+                            :                         
+                            this.state.mensagemDeErro ?
+                                <p className="border rounded p-2 fs-1-text-center">
+                                    É preciso dar permissão para acessar a sua localização
+                                </p>
+                                :
+                                <EstacaoClimatica
+                                    latitude={this.state.latitude}
+                                    longitude={this.state.longitude}
+                                    estacao={this.state.estacao}
+                                    data={this.state.data}
+                                    icone={this.state.icone}
+                                    mensagemDeErro={this.state.mensagemDeErro}
+                                    obterLocalizacao={this.obterLocalizacao}
+                                />
+                        }
+                    </div>                  
                 </div>
             </div>
         )
